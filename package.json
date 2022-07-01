@@ -1,0 +1,51 @@
+{
+  "name": "aws-proxy-fetch",
+  "version": "0.1.0",
+  "description": "Fetch web content behind a firewall with an AWS proxy.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Dirag Biswas (https://github.com/diragb)",
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/diragb"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diragb/aws-proxy-fetch"
+  },
+  "bugs": {
+    "url": "https://github.com/diragb/aws-proxy-fetch/issues"
+  },
+  "homepage": "https://github.com/diragb/aws-proxy-fetch#readme",
+  "scripts": {
+    "prebuild": "npm run clean",
+    "clean": "rimraf dist/",
+    "build": "npm run prebuild && tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "aws",
+    "iframe",
+    "node",
+    "proxy",
+    "fetch",
+    "cors",
+    "403",
+    "axios"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/random-useragent": "^0.3.1",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.11",
+    "chrome-aws-lambda": "^10.1.0",
+    "puppeteer-core": "^10.4.0",
+    "random-useragent": "^0.5.0"
+  }
+}
