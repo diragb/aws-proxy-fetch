@@ -1,6 +1,6 @@
 {
   "name": "aws-proxy-fetch",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Fetch web content behind a firewall with an AWS proxy.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -26,6 +26,7 @@
   },
   "keywords": [
     "aws",
+    "lambda",
     "iframe",
     "node",
     "proxy",
@@ -38,6 +39,7 @@
   "devDependencies": {
     "@types/node": "^18.0.0",
     "@types/random-useragent": "^0.3.1",
+    "rimraf": "^3.0.2",
     "ts-node": "^10.8.1",
     "typescript": "^4.7.4"
   },

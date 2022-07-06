@@ -29,7 +29,7 @@ Finally, in your AWS Lambda code:
 ```ts
 // Packages:
 const Chromium = require('chrome-aws-lambda')
-const fetch = require('aws-proxy-fetch')
+const fetch = require('aws-proxy-fetch').default
 
 
 // Exports:

@@ -1,11 +1,5 @@
 // Typescript:
 import type {
-  LaunchOptions,
-  BrowserLaunchArgumentOptions,
-  BrowserConnectOptions,
-  Product
-} from 'puppeteer-core'
-import type {
   AxiosRequestConfig,
   AxiosRequestHeaders
 } from 'axios'
@@ -19,10 +13,7 @@ export interface AxiosOptions {
   headers?: AxiosRequestHeaders
 }
 
-export type PuppeteerLaunchOptions = LaunchOptions & BrowserLaunchArgumentOptions & BrowserConnectOptions & {
-  product?: Product
-  extraPrefsFirefox: Record<string, unknown>
-}
+export type PuppeteerLaunchOptions = any
 
 export interface PuppeteerOptions {
   baseURL: string
