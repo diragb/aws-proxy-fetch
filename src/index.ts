@@ -1,5 +1,4 @@
 // Packages:
-import Chromium from 'chrome-aws-lambda'
 import axios from 'axios'
 import cheerio from 'cheerio'
 import { convertAnchorHrefs } from './utils/convertAnchorHrefs'
@@ -16,7 +15,7 @@ import {
 
 
 // Functions:
-const fetch = async ({
+const fetch = async (Chromium: any, {
   targetURL,
   type,
   axiosOptions,

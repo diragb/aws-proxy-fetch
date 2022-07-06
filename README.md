@@ -15,10 +15,21 @@ Fetching web content from other websites from client-side usually either results
 Check out [**node-proxy-fetch**](https://www.npmjs.com/package/node-proxy-fetch) for a platform agnostic approach.
 
 # Usage
-In your AWS Lambda code:
+Before you use this package, make sure that your environment has the correct configuration:
+- Compatible runtimes: `nodejs12.x`
+- Compatible architectures: `x86_64`
+
+This package cannot run on Node v14.x due to [this error](https://stackoverflow.com/a/67117619), and on Node v12.x due to [this reason](https://github.com/alixaxel/chrome-aws-lambda/pull/274).
+
+You'll need to manually create a layer for `chrome-aws-lambda` and add it to your Lambda function, [here are the instructions](https://github.com/alixaxel/chrome-aws-lambda/pull/274). Alternatively, you can copy the layer ARN from [here](https://github.com/shelfio/chrome-aws-lambda-layer).
+
+Install this package in your project and [create a layer](https://bobbyhadz.com/blog/aws-lambda-use-npm-modules).
+
+Finally, in your AWS Lambda code:
 ```ts
 // Packages:
-const fetch = require('aws-proxy-fetch');
+const Chromium = require('chrome-aws-lambda')
+const fetch = require('aws-proxy-fetch')
 
 
 // Exports:
@@ -32,7 +43,7 @@ exports.handler = async (event, _context, _callback) => {
   }
 
   if (fetchOptions.type === 'DOCUMENT') {
-    const webpage = await fetch({
+    const webpage = await fetch(Chromium, {
       targetURL: fetchOptions.targetURL,
       type: fetchOptions.type,
       puppeteerOptions: {
@@ -59,51 +70,58 @@ exports.handler = async (event, _context, _callback) => {
 
 # API
 
-## targetURL
+## Chromium
+`Chromium`
+
+The imported Chromium class.
+
+## options
+
+### targetURL
 `string`
 
 The target URL that you want to fetch.
 
-## type
+### type
 `FetchType = 'DOCUMENT' | 'BLOB'`
 
 The type of content you are fetching.
 
-## axiosOptions
+### axiosOptions
 `AxiosOptions` - **OPTIONAL**
 
 Options for Axios, only used when `type` is `BLOB`.
 
-### config
+#### config
 `AxiosRequestConfig<any>` - **OPTIONAL**
 
-### headers
+#### headers
 `AxiosRequestHeaders` - **OPTIONAL**
 
-## puppeteerOptions
+### puppeteerOptions
 `PuppeteerOptions` - **OPTIONAL**
 
-### baseURL
+#### baseURL
 `string`
 
 The base URL with the pattern `protocol://domain.tld`. All relative paths in the fetched HTML is replaced with this.
 
-### waitFor
+#### waitFor
 `number` - **OPTIONAL**
 
 The number of milliseconds to wait for before scraping the HTML. This gives time for the Javascript to run on the page. Defaults to `5000`.
 
-### transformExternalLinks
+#### transformExternalLinks
 `boolean` - **OPTIONAL**
 
 Whether to transform relative paths with the `baseURL` or not. Defaults to `true`.
 
-### launchOptions
+#### launchOptions
 `Partial<PuppeteerOptions>` - **OPTIONAL**
 
 Launch options for Puppeteer.
 
-### launchArguments
+#### launchArguments
 `string[]` - **OPTIONAL**
 
 Launch arguments for Puppeteer.

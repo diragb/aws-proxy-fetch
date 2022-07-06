@@ -1,6 +1,6 @@
 {
   "name": "aws-proxy-fetch",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Fetch web content behind a firewall with an AWS proxy.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -44,8 +44,6 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.11",
-    "chrome-aws-lambda": "^10.1.0",
-    "puppeteer-core": "^10.4.0",
     "random-useragent": "^0.5.0"
   }
 }
